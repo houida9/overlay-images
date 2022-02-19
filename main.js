@@ -1,3 +1,7 @@
+// Set the transparency
+var mockupAlpha = 1;
+var screenshotAlpha = 0.5;
+
 var loadMockup = function(event) {
   var mockupImage = document.getElementById('mockup');
   mockupImage.style.display = "block";
@@ -38,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
         context.drawImage(mockupuserimage, 0, 0, canvas.width, canvas.height);
         context.restore();
         context.fillStyle = 'green';
-        context.globalAlpha = 0.5;
+        context.globalAlpha = screenshotAlpha;
         context.drawImage(screenshotuserimage, 0, 0, canvas.width, canvas.height);
 
         document.getElementById('canvas').style.border = 'solid 2px green';

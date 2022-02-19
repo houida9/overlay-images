@@ -12,6 +12,7 @@
       default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="main.js"></script>
@@ -26,7 +27,8 @@
         <!-- ADD MOCKUP -->
         <div class="col-6 text-center">
           <div class="file-upload mockup">
-            <button id="mockup-upload" class="file-upload-btn btn btn-lg mockup" type="button" onclick="$('.file-upload-input.mockup').trigger( 'click' )">Add Mockup</button>
+            <button id="mockup-upload" class="file-upload-btn btn btn-lg mockup" type="button" onclick="$('.file-upload-input.mockup').trigger( 'click' )">
+              <span><i class="fa-solid fa-upload"></i></span> Mockup</button>
             <div class="image-upload-wrap mockup">
               <input id="mockup-input" class="file-upload-input mockup" onchange="loadMockup(event)" type='file' accept="image/*" required/>
               <div class="drag-text">
@@ -38,7 +40,9 @@
         <!-- ADD screenshot -->
         <div class="col-6 text-center">
           <div class="file-upload screenshot">
-            <button id="screenshot-upload" class="file-upload-btn btn btn-lg screenshot" type="button" onclick="$('.file-upload-input.screenshot').trigger( 'click' )">Add screenshot</button>
+            <button id="screenshot-upload" class="file-upload-btn btn btn-lg screenshot" type="button" onclick="$('.file-upload-input.screenshot').trigger( 'click' )">
+              <span><i class="fa-solid fa-upload"></i></span> screenshot
+            </button>
             <div class="image-upload-wrap screenshot">
               <input id="screenshot-input" class="file-upload-input screenshot" onchange="loadscreenshot(event)" type='file' accept="image/*" required/>
               <div class="drag-text">
@@ -54,7 +58,7 @@
         <!-- Overlay button -->
         <div class="col-4 center-block text-center">
           <button class="btn btn-overlay btn-lg" id="overlay">
-            OVERLAY
+            <span><i class="fa-solid fa-images"></i></span> OVERLAY
           </button>
           <div class="invalid-tooltip">
             Please select a valid state.
