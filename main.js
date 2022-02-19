@@ -1,19 +1,29 @@
 var loadMockup = function(event) {
+  
   var mockupImage = document.getElementById('mockup');
+  document.getElementsByClassName('image-upload-wrap')[0].style.display = 'block';
+
   mockupImage.src = URL.createObjectURL(event.target.files[0]);
   mockupImage.onload = function() {
     URL.revokeObjectURL(mockupImage.src);
   }
   mockupImage.style.display = "block";
+  document.getElementsByClassName('file-upload')[0].style.background_color = 'black';
 };
 
-var loadITU = function(event) {
-  var ituImage = document.getElementById('itu');
-  ituImage.src = URL.createObjectURL(event.target.files[0]);
-  ituImage.onload = function() {
-    URL.revokeObjectURL(ituImage.src);
+var loadscreenshot = function(event) {
+  var screenshotImage = document.getElementById('screenshot');
+
+  document.getElementsByClassName('image-upload-wrap')[1].style.display = 'block';
+  document.getElementsByClassName('file-upload')[0].style.background_color = 'black';
+
+  screenshotImage.src = URL.createObjectURL(event.target.files[0]);
+  screenshotImage.onload = function() {
+    URL.revokeObjectURL(screenshotImage.src);
   }
-  ituImage.style.display = "block";
+  screenshotImage.style.display = "block";
+
+
 };
 
 document.addEventListener('DOMContentLoaded', function(event) {
@@ -25,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
       context.clearRect(0, 0, canvas.width, canvas.height);
 
       var mockupuserimage = document.getElementById('mockup');
-      var ituuserimage = document.getElementById('itu');
+      var screenshotuserimage = document.getElementById('screenshot');
     
       // draw overlay
       context.save();
@@ -33,6 +43,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
       context.restore();
       context.fillStyle = 'green';
       context.globalAlpha = 0.5;
-      context.drawImage(ituuserimage, 0, 0, canvas.width, canvas.height);
+      context.drawImage(screenshotuserimage, 0, 0, canvas.width, canvas.height);
+
+      document.getElementById('canvas').style.border = 'solid 2px green';
     })
 })

@@ -26,7 +26,7 @@
         <!-- ADD MOCKUP -->
         <div class="col-6 text-center">
           <div class="file-upload mockup">
-            <button id="mockup-upload" class="file-upload-btn mockup" type="button" onclick="$('.file-upload-input.mockup').trigger( 'click' )">Add Mockup</button>
+            <button id="mockup-upload" class="file-upload-btn btn btn-lg mockup" type="button" onclick="$('.file-upload-input.mockup').trigger( 'click' )">Add Mockup</button>
             <div class="image-upload-wrap mockup">
               <input id="mockup-input" class="file-upload-input mockup" onchange="loadMockup(event)" type='file' accept="image/*" />
               <div class="drag-text">
@@ -35,14 +35,14 @@
             </div>
           </div>
         </div>
-        <!-- ADD ITU -->
+        <!-- ADD screenshot -->
         <div class="col-6 text-center">
-          <div class="file-upload itu">
-            <button id="itu-upload" class="file-upload-btn itu" type="button" onclick="$('.file-upload-input.itu').trigger( 'click' )">Add ITU</button>
-            <div class="image-upload-wrap itu">
-              <input id="itu-input" class="file-upload-input itu" onchange="loadITU(event)" type='file' accept="image/*" />
+          <div class="file-upload screenshot">
+            <button id="screenshot-upload" class="file-upload-btn btn btn-lg screenshot" type="button" onclick="$('.file-upload-input.screenshot').trigger( 'click' )">Add screenshot</button>
+            <div class="image-upload-wrap screenshot">
+              <input id="screenshot-input" class="file-upload-input screenshot" onchange="loadscreenshot(event)" type='file' accept="image/*" />
               <div class="drag-text">
-                <img id="itu">  
+                <img id="screenshot">  
               </div>
             </div>
           </div> 
@@ -54,7 +54,7 @@
         <!-- Overlay button -->
         <div class="col-4 center-block text-center">
           <button class="btn btn-overlay btn-lg" id="overlay">
-            Overlay!
+            OVERLAY
           </button>
         </div>
         <div class="col-4">
