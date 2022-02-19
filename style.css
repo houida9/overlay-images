@@ -35,6 +35,20 @@ body {
   color: white;
 }
 
+.btn-group {
+  margin-top: 92px;
+  box-shadow: none;
+}
+
+#dropdown {
+  letter-spacing: 1px;
+}
+
+.dropdown-menu.dropdown-menu.show {
+  margin-top: 4px;
+  font-size: 20px;
+}
+
 .mockup-upload, .screenshot-upload {
   border-radius: 10px;
 }

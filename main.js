@@ -1,6 +1,6 @@
-// Set the transparency
-var mockupAlpha = 1;
+// Set the default transparency
 var screenshotAlpha = 0.5;
+
 
 var loadMockup = function(event) {
   var mockupImage = document.getElementById('mockup');
@@ -26,12 +26,21 @@ var loadscreenshot = function(event) {
 
 document.addEventListener('DOMContentLoaded', function(event) {
 
+    $('#dropdown-menu a').on('click', function(e){
+      e.preventDefault();
+
+      $('.dropdown-item').css('background-color', 'white')
+
+      screenshotAlpha = $(this).text()
+      $(this).css('background-color', 'orange')
+      document.getElementById('overlay').click()
+  });
+
     document.getElementById('overlay').addEventListener('click', function() {
+      var mockupImage = document.getElementById('mockup');
+      var screenshotImage = document.getElementById('screenshot');
 
-      var mockupuserimage = document.getElementById('mockup');
-      var screenshotuserimage = document.getElementById('screenshot');
-
-      if (mockupuserimage.src && screenshotuserimage.src){
+      if (mockupImage.src && screenshotImage.src){
 
         var canvas = document.getElementById("canvas");
         var context = canvas.getContext('2d');
@@ -39,11 +48,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
         // draw overlay
         context.save();
-        context.drawImage(mockupuserimage, 0, 0, canvas.width, canvas.height);
+        context.drawImage(mockupImage, 0, 0, canvas.width, canvas.height);
         context.restore();
         context.fillStyle = 'green';
         context.globalAlpha = screenshotAlpha;
-        context.drawImage(screenshotuserimage, 0, 0, canvas.width, canvas.height);
+        context.drawImage(screenshotImage, 0, 0, canvas.width, canvas.height);
 
         document.getElementById('canvas').style.border = 'solid 2px green';
         document.getElementById('canvas').style.borderRadius = '10px';

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="main.js"></script>
     <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   </head>
@@ -56,15 +57,25 @@
         <div class="col-4">
         </div>
         <!-- Overlay button -->
-        <div class="col-4 center-block text-center">
+        <div class="col-3 center-block text-center">
           <button class="btn btn-overlay btn-lg" id="overlay">
             <span><i class="fa-solid fa-images"></i></span> OVERLAY
           </button>
-          <div class="invalid-tooltip">
-            Please select a valid state.
-          </div>
         </div>
-        <div class="col-4">
+        <!-- ALPHA -->
+        <div class="col-2">
+          <div class="btn-group">
+            <button id="dropdown" title="Screenshot Transparency" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Alpha
+            </button>
+            <div class="dropdown-menu" id="dropdown-menu">
+              <h6 class="dropdown-header">Screenshot Transparency</h6>
+              <a class="dropdown-item" href="#">0.4</a>
+              <a class="dropdown-item" href="#">0.5</a>
+              <a class="dropdown-item" href="#">0.6</a>
+              <a class="dropdown-item" href="#">0.7</a>
+            </div>
+          </div>
         </div>
       </div>
       <!-- Canvas -->
