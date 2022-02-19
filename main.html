@@ -28,7 +28,7 @@
           <div class="file-upload mockup">
             <button id="mockup-upload" class="file-upload-btn btn btn-lg mockup" type="button" onclick="$('.file-upload-input.mockup').trigger( 'click' )">Add Mockup</button>
             <div class="image-upload-wrap mockup">
-              <input id="mockup-input" class="file-upload-input mockup" onchange="loadMockup(event)" type='file' accept="image/*" />
+              <input id="mockup-input" class="file-upload-input mockup" onchange="loadMockup(event)" type='file' accept="image/*" required/>
               <div class="drag-text">
                 <img id="mockup">
               </div>
@@ -40,7 +40,7 @@
           <div class="file-upload screenshot">
             <button id="screenshot-upload" class="file-upload-btn btn btn-lg screenshot" type="button" onclick="$('.file-upload-input.screenshot').trigger( 'click' )">Add screenshot</button>
             <div class="image-upload-wrap screenshot">
-              <input id="screenshot-input" class="file-upload-input screenshot" onchange="loadscreenshot(event)" type='file' accept="image/*" />
+              <input id="screenshot-input" class="file-upload-input screenshot" onchange="loadscreenshot(event)" type='file' accept="image/*" required/>
               <div class="drag-text">
                 <img id="screenshot">  
               </div>
@@ -56,6 +56,9 @@
           <button class="btn btn-overlay btn-lg" id="overlay">
             OVERLAY
           </button>
+          <div class="invalid-tooltip">
+            Please select a valid state.
+          </div>
         </div>
         <div class="col-4">
         </div>
