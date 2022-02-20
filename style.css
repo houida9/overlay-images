@@ -18,35 +18,66 @@ body {
 }
 
 .btn-overlay {
-  background-color: rgb(1, 85, 5);
-  margin: 80px 0; 
+  margin-left: 150px;
+  background-color: rgb(104, 7, 104);
+  margin-top: 80px;
+  margin-bottom: 50px;
   width: 300px;
   font-size: 20px;
-  margin-bottom: 50px;
   color: white;
   font: bold;
   letter-spacing: 1px;
   border: solid 2px rgb(216, 212, 212);
   border-radius: 10px;
+  float: left;
 }
 
 .btn-overlay:hover {
-  background-color: rgba(29, 182, 42, 0.89);
+  background-color: rgba(127, 11, 133, 0.89);
   color: white;
+  cursor: pointer;
 }
 
 .btn-group {
-  margin-top: 92px;
+  margin-top: 10px;
+  box-shadow: none;
+  float: right;
+}
+
+.btn-group:hover {
   box-shadow: none;
 }
 
-#dropdown {
-  letter-spacing: 1px;
+#alpha-dropdown-menu {
+  min-width: 110px;
+  max-width: 110px;
 }
 
-.dropdown-menu.dropdown-menu.show {
-  margin-top: 4px;
-  font-size: 20px;
+#hue-dropdown-menu {
+  min-width: 90px;
+  max-width: 90px;
+}
+
+#alpha-dropdown {
+  letter-spacing: 1px;
+  margin-left: 35px;
+  margin-right: 10px;
+}
+
+#hue-dropdown {
+  letter-spacing: 1px;
+  margin-left: 10px;
+  margin-right: 90px;
+}
+
+#alpha-dropdown-menu, 
+  #hue-dropdown-menu {
+    margin-top: 2px;
+}
+
+.dropdown-menu {
+  min-width: 115px;
+  max-width: 1px;
 }
 
 .mockup-upload, .screenshot-upload {
@@ -176,4 +207,3 @@ body {
   border-radius: 15px;
   cursor: pointer;
 }
-

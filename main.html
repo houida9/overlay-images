@@ -42,40 +42,53 @@
         <div class="col-6 text-center">
           <div class="file-upload screenshot">
             <button id="screenshot-upload" class="file-upload-btn btn btn-lg screenshot" type="button" onclick="$('.file-upload-input.screenshot').trigger( 'click' )">
-              <span><i class="fa-solid fa-upload"></i></span> screenshot
+              <span><i class="fa-solid fa-upload"></i></span> Screenshot
             </button>
             <div class="image-upload-wrap screenshot">
-              <input id="screenshot-input" class="file-upload-input screenshot" onchange="loadscreenshot(event)" type='file' accept="image/*" required/>
+              <input id="screenshot-input" class="file-upload-input screenshot" onchange="loadScreenshot(event)" type='file' accept="image/*" required/>
               <div class="drag-text">
                 <img id="screenshot">  
               </div>
             </div>
-          </div> 
+          </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-4">
+        <div class="col-12">
+          <!-- HUE -->
+          <div class="btn-group">
+            <button id="hue-dropdown" title="Screenshot Transparency" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Hue
+            </button>
+            <div class="dropdown-menu" id="hue-dropdown-menu">
+              <a class="dropdown-item" href="#">0.2</a>
+              <a class="dropdown-item" href="#">0.6</a>
+              <a class="dropdown-item" href="#">1.0</a>
+            </div>
+          </div>
+          <!-- ALPHA -->
+          <div class="btn-group">
+            <button id="alpha-dropdown" title="Screenshot Transparency" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Alpha
+            </button>
+            <div class="dropdown-menu" id="alpha-dropdown-menu">
+              <a class="dropdown-item" href="#">0.4</a>
+              <a class="dropdown-item" href="#">0.6</a>
+              <a class="dropdown-item" href="#">0.8</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
         </div>
         <!-- Overlay button -->
-        <div class="col-3 center-block text-center">
+        <div class="col-3 center-block text-center center-block">
           <button class="btn btn-overlay btn-lg" id="overlay">
             <span><i class="fa-solid fa-images"></i></span> OVERLAY
           </button>
         </div>
-        <!-- ALPHA -->
-        <div class="col-2">
-          <div class="btn-group">
-            <button id="dropdown" title="Screenshot Transparency" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Alpha
-            </button>
-            <div class="dropdown-menu" id="dropdown-menu">
-              <h6 class="dropdown-header">Screenshot Transparency</h6>
-              <a class="dropdown-item" href="#">0.4</a>
-              <a class="dropdown-item" href="#">0.5</a>
-              <a class="dropdown-item" href="#">0.6</a>
-              <a class="dropdown-item" href="#">0.7</a>
-            </div>
-          </div>
+        <div class="col-3">
         </div>
       </div>
       <!-- Canvas -->

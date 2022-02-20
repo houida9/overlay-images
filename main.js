@@ -1,6 +1,9 @@
-// Set the default transparency
-var screenshotAlpha = 0.5;
+// Set the default transparency, hue, and saturation
+// for the screenshot image
+var screenshotAlpha = 0.6;
+var screenshotHue = 0.2;
 
+var overlayClicked = false
 
 var loadMockup = function(event) {
   var mockupImage = document.getElementById('mockup');
@@ -9,36 +12,52 @@ var loadMockup = function(event) {
   mockupImage.src = URL.createObjectURL(event.target.files[0]);
   mockupImage.onload = function() {
     URL.revokeObjectURL(mockupImage.src);
-    // tint(mockupImage, 0.8)
+    console.log("mockup")
   }
 };
 
 
-var loadscreenshot = function(event) {
+var loadScreenshot = function(event) {
   var screenshotImage = document.getElementById('screenshot');
   screenshotImage.style.display = "block";
 
   screenshotImage.src = URL.createObjectURL(event.target.files[0]);
   screenshotImage.onload = function() {
     URL.revokeObjectURL(screenshotImage.src);
-    tint(screenshotImage, 0.8);
+      tint(screenshotImage, screenshotHue);
+      console.log("here")
   }
 };
 
 
 document.addEventListener('DOMContentLoaded', function(event) {
 
-    $('#dropdown-menu a').on('click', function(e){
+    $('#alpha-dropdown-menu a').on('click', function(e){
       e.preventDefault();
 
-      $('.dropdown-item').css('background-color', 'white')
+      $('#alpha-dropdown-menu .dropdown-item').css('background-color', 'white')
 
       screenshotAlpha = $(this).text()
-      $(this).css('background-color', 'orange')
-      document.getElementById('overlay').click()
-  });
+      $(this).css('background-color', '#4BB543')
+
+      if (overlayClicked)
+        document.getElementById('overlay').click()
+    });
+
+    $('#hue-dropdown-menu a').on('click', function(e){
+      e.preventDefault();
+
+      $('#hue-dropdown-menu .dropdown-item').css('background-color', 'white')
+
+      screenshotHue = $(this).text()
+      $(this).css('background-color', '#eed202')
+      
+      if (overlayClicked)
+        document.getElementById('overlay').click()
+    });
 
     document.getElementById('overlay').addEventListener('click', function() {
+      overlayClicked = true
       var mockupImage = document.getElementById('mockup');
       var screenshotImage = document.getElementById('screenshot');
 
@@ -56,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
         context.globalAlpha = screenshotAlpha;
         context.drawImage(screenshotImage, 0, 0, canvas.width, canvas.height);
 
-        document.getElementById('canvas').style.border = 'solid 2px green';
+        document.getElementById('canvas').style.border = 'solid 4px rgb(104, 7, 104)';
         document.getElementById('canvas').style.borderRadius = '10px';
       }
     })
