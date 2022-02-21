@@ -5,7 +5,7 @@ var screenshotHue = 0.0;
 
 var overlayClicked = false;
 
-var uploadedImg = ""
+var uploadedImgEvent = ""
 
 let alphaMap = {
   "Transparent": 0.2,
@@ -14,10 +14,10 @@ let alphaMap = {
 }
 
 let hueMap = {
+  "None": 0.0,
   "Yellow": 0.2,
   "Blue": 0.6,
   "Red": 1.0,
-  "None": 0.0
 }
 
 
@@ -36,7 +36,7 @@ var loadScreenshot = function(event) {
   var screenshotImage = document.getElementById('screenshot');
   screenshotImage.style.display = "block";
 
-  uploadedImg = event
+  uploadedImgEvent = event
   screenshotImage.src = URL.createObjectURL(event.target.files[0]);
 
   screenshotImage.onload = function() {
@@ -50,7 +50,7 @@ var loadScreenshot = function(event) {
 
 function highlightDefaultAlpha() {
   $( "#alpha-dropdown-menu > a" )
-    .filter(function( index ) {
+    .filter(function() {
       return alphaMap[$(this).text()] == screenshotAlpha;
     })
     .css( "background-color", "#4BB543" );
@@ -93,7 +93,7 @@ function setSelectedHueListener() {
 
     screenshotHue = hueMap[$(this).text()]
 
-    document.getElementById('screenshot-input').onchange(uploadedImg)
+    document.getElementById('screenshot-input').onchange(uploadedImgEvent)
 
     $(this).css('background-color', '#eed202');
     
