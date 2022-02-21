@@ -3,7 +3,7 @@
 var screenshotAlpha = 0.6;
 var screenshotHue = 0.0;
 
-var overlayClicked = false;
+var overlayed = false;
 
 var uploadedImgEvent = ""
 
@@ -47,6 +47,13 @@ var loadScreenshot = function(event) {
   }
 };
 
+document.addEventListener('DOMContentLoaded', function(event) {
+
+  setSelectedAlphaListener();
+  setSelectedHueListener();
+
+})
+
 
 function highlightDefaultAlpha() {
   $( "#alpha-dropdown-menu > a" )
@@ -56,6 +63,7 @@ function highlightDefaultAlpha() {
     .css( "background-color", "#4BB543" );
 }
 
+
 function highlightDefaultHue() {
   $( "#hue-dropdown-menu > a" )
     .filter(function() {
@@ -63,6 +71,7 @@ function highlightDefaultHue() {
     })
     .css( "background-color", "#eed202" );
 }
+
 
 function setSelectedAlphaListener() {
 
@@ -76,11 +85,12 @@ function setSelectedAlphaListener() {
     screenshotAlpha = alphaMap[$(this).text()]
     $(this).css('background-color', '#4BB543')
 
-    if (overlayClicked) {
+    if (overlayed) {
       document.getElementById('overlay').click()
     }
   });
 }
+
 
 function setSelectedHueListener() {
 
@@ -97,46 +107,60 @@ function setSelectedHueListener() {
 
     $(this).css('background-color', '#eed202');
     
-    if (overlayClicked) {
+    if (overlayed) {
       setTimeout(() => {
         document.getElementById('overlay').click()
-      }, 100)
+      }, 70)
     }
   });
 }
 
 
-document.addEventListener('DOMContentLoaded', function(event) {
+function overlay() {
+  var mockupImage = document.getElementById('mockup');
+  var screenshotImage = document.getElementById('screenshot');
 
-      setSelectedAlphaListener();
-      setSelectedHueListener();
+  if (mockupImage.src && screenshotImage.src){
+    overlayed = true;
 
-    document.getElementById('overlay').addEventListener('click', function() {
-      overlayClicked = true
-      var mockupImage = document.getElementById('mockup');
-      var screenshotImage = document.getElementById('screenshot');
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    context.save();
+    context.drawImage(mockupImage, 0, 0, canvas.width, canvas.height);
+    context.restore();
+    context.save();
+    context.globalAlpha = screenshotAlpha;
+    context.drawImage(screenshotImage, 0, 0, canvas.width, canvas.height);
+    context.restore();
+
+    canvas.style.border = 'solid 4px rgb(104, 7, 104)';
+    canvas.style.borderRadius = '10px';
+
+    document.getElementById('download').style.visibility = "visible";
+  }
+}
 
 
-      if (mockupImage.src && screenshotImage.src){
+function downloadOverlay() {
+    if(overlayed) {
+      const date = new Date();
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      var monthString = months[date.getMonth()]
+      const [month, day, year, hours, minutes, seconds] = [monthString, date.getDate(), date.getFullYear(), date.getHours(), date.getMinutes(), date.getSeconds()]
+      const timestamp = `${year}${month}${day}_${hours}${minutes}${seconds}`;
 
-        var canvas = document.getElementById("canvas");
-        var context = canvas.getContext('2d');
-        context.clearRect(0, 0, canvas.width, canvas.height);
+      let downloadLink = document.createElement('a');
+      downloadLink.setAttribute('download', `overlay${timestamp}.png`);
+      let canvas = document.getElementById('canvas');
+      let dataURL = canvas.toDataURL('image/png');
+      let url = dataURL.replace(/^data:image\/png/,'data:application/octet-stream');
+      downloadLink.setAttribute('href', url);
+      downloadLink.click();
+    }
+}
 
-        // draw overlay
-        context.save();
-        context.drawImage(mockupImage, 0, 0, canvas.width, canvas.height);
-        context.restore();
-        context.save();
-        context.globalAlpha = screenshotAlpha;
-        context.drawImage(screenshotImage, 0, 0, canvas.width, canvas.height);
-        context.restore();
-
-        document.getElementById('canvas').style.border = 'solid 4px rgb(104, 7, 104)';
-        document.getElementById('canvas').style.borderRadius = '10px';
-      }
-    })
-})
 
 
 

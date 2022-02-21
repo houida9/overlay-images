@@ -14,13 +14,19 @@ body {
 
 #canvas {
   text-align: center;
-  margin-bottom: 200px;
+  margin-bottom: 20px;
+}
+
+#download {
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  visibility: hidden;
 }
 
 .btn-overlay {
   margin-left: 150px;
   background-color: rgb(104, 7, 104);
-  margin-top: 80px;
+  margin-top: 40px;
   margin-bottom: 50px;
   width: 300px;
   font-size: 20px;
