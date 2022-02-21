@@ -1,9 +1,25 @@
 // Set the default transparency, hue, and saturation
 // for the screenshot image
 var screenshotAlpha = 0.6;
-var screenshotHue = 0.2;
+var screenshotHue = 0.0;
 
-var overlayClicked = false
+var overlayClicked = false;
+
+var uploadedImg = ""
+
+let alphaMap = {
+  "Transparent": 0.2,
+  "Translucent": 0.6,
+  "Opaque": 0.8
+}
+
+let hueMap = {
+  "Yellow": 0.2,
+  "Blue": 0.6,
+  "Red": 1.0,
+  "None": 0.0
+}
+
 
 var loadMockup = function(event) {
   var mockupImage = document.getElementById('mockup');
@@ -12,7 +28,6 @@ var loadMockup = function(event) {
   mockupImage.src = URL.createObjectURL(event.target.files[0]);
   mockupImage.onload = function() {
     URL.revokeObjectURL(mockupImage.src);
-    console.log("mockup")
   }
 };
 
@@ -21,40 +36,80 @@ var loadScreenshot = function(event) {
   var screenshotImage = document.getElementById('screenshot');
   screenshotImage.style.display = "block";
 
+  uploadedImg = event
   screenshotImage.src = URL.createObjectURL(event.target.files[0]);
+
   screenshotImage.onload = function() {
     URL.revokeObjectURL(screenshotImage.src);
+
+    if (screenshotHue != 0)
       tint(screenshotImage, screenshotHue);
-      console.log("here")
   }
 };
 
 
+function highlightDefaultAlpha() {
+  $( "#alpha-dropdown-menu > a" )
+    .filter(function( index ) {
+      return alphaMap[$(this).text()] == screenshotAlpha;
+    })
+    .css( "background-color", "#4BB543" );
+}
+
+function highlightDefaultHue() {
+  $( "#hue-dropdown-menu > a" )
+    .filter(function() {
+      return hueMap[$(this).text()] == screenshotHue;
+    })
+    .css( "background-color", "#eed202" );
+}
+
+function highlightSelectedAlpha() {
+
+  highlightDefaultAlpha();
+
+  $('#alpha-dropdown-menu a').on('click', function(e){
+    e.preventDefault();
+
+    $('#alpha-dropdown-menu .dropdown-item').css('background-color', 'white')
+
+    screenshotAlpha = alphaMap[$(this).text()]
+    $(this).css('background-color', '#4BB543')
+
+    if (overlayClicked) {
+      document.getElementById('overlay').click()
+    }
+  });
+}
+
+function highlightSelectedHue() {
+
+  highlightDefaultHue();
+
+  $('#hue-dropdown-menu a').on('click', function(e){
+    e.preventDefault();
+
+    $('#hue-dropdown-menu .dropdown-item').css('background-color', 'white');
+
+    screenshotHue = hueMap[$(this).text()]
+
+    document.getElementById('screenshot-input').onchange(uploadedImg)
+
+    $(this).css('background-color', '#eed202');
+    
+    if (overlayClicked) {
+      setTimeout(() => {
+        document.getElementById('overlay').click()
+      }, 100)
+    }
+  });
+}
+
+
 document.addEventListener('DOMContentLoaded', function(event) {
 
-    $('#alpha-dropdown-menu a').on('click', function(e){
-      e.preventDefault();
-
-      $('#alpha-dropdown-menu .dropdown-item').css('background-color', 'white')
-
-      screenshotAlpha = $(this).text()
-      $(this).css('background-color', '#4BB543')
-
-      if (overlayClicked)
-        document.getElementById('overlay').click()
-    });
-
-    $('#hue-dropdown-menu a').on('click', function(e){
-      e.preventDefault();
-
-      $('#hue-dropdown-menu .dropdown-item').css('background-color', 'white')
-
-      screenshotHue = $(this).text()
-      $(this).css('background-color', '#eed202')
-      
-      if (overlayClicked)
-        document.getElementById('overlay').click()
-    });
+      highlightSelectedAlpha();
+      highlightSelectedHue();
 
     document.getElementById('overlay').addEventListener('click', function() {
       overlayClicked = true
@@ -83,7 +138,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
 
 
-// The following was copied verbatim from https://gist.github.com/matsadler/bf8c1b78295955fe56dc603237da0dcf.
+/* All of the following was copied verbatim from 
+ * https://gist.github.com/matsadler/bf8c1b78295955fe56dc603237da0dcf 
+*/
 
 // img should be an img element (ensure the image has loaded first)
 //
