@@ -64,7 +64,7 @@ function highlightDefaultHue() {
     .css( "background-color", "#eed202" );
 }
 
-function highlightSelectedAlpha() {
+function setSelectedAlphaListener() {
 
   highlightDefaultAlpha();
 
@@ -82,7 +82,7 @@ function highlightSelectedAlpha() {
   });
 }
 
-function highlightSelectedHue() {
+function setSelectedHueListener() {
 
   highlightDefaultHue();
 
@@ -108,8 +108,8 @@ function highlightSelectedHue() {
 
 document.addEventListener('DOMContentLoaded', function(event) {
 
-      highlightSelectedAlpha();
-      highlightSelectedHue();
+      setSelectedAlphaListener();
+      setSelectedHueListener();
 
     document.getElementById('overlay').addEventListener('click', function() {
       overlayClicked = true
@@ -127,8 +127,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
         context.save();
         context.drawImage(mockupImage, 0, 0, canvas.width, canvas.height);
         context.restore();
+        context.save();
         context.globalAlpha = screenshotAlpha;
         context.drawImage(screenshotImage, 0, 0, canvas.width, canvas.height);
+        context.restore();
 
         document.getElementById('canvas').style.border = 'solid 4px rgb(104, 7, 104)';
         document.getElementById('canvas').style.borderRadius = '10px';

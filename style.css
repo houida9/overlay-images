@@ -30,6 +30,7 @@ body {
   border: solid 2px rgb(216, 212, 212);
   border-radius: 10px;
   float: left;
+  padding: 10px !important;
 }
 
 .btn-overlay:hover {
