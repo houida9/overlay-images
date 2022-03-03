@@ -26,11 +26,25 @@
 
     <div class="container">
       <div class="row">
+        <!-- ADD SCREENSHOT -->
+        <div class="col-6 text-center">
+          <div class="file-upload screenshot">
+            <button id="screenshot-upload" class="file-upload-btn btn btn-lg screenshot" type="button" onclick="$('.file-upload-input.screenshot').trigger( 'click' )">
+              <span><i class="fa-solid fa-upload"></i></span> screenshot</button>
+            <div class="image-upload-wrap screenshot">
+              <input id="screenshot-input" class="file-upload-input screenshot" onchange="loadScreenshot(event)" type='file' accept="image/*" required/>
+              <div class="drag-text">
+                <img id="screenshot">
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- ADD MOCKUP -->
         <div class="col-6 text-center">
           <div class="file-upload mockup">
             <button id="mockup-upload" class="file-upload-btn btn btn-lg mockup" type="button" onclick="$('.file-upload-input.mockup').trigger( 'click' )">
-              <span><i class="fa-solid fa-upload"></i></span> Mockup</button>
+              <span><i class="fa-solid fa-upload"></i></span> mockup
+            </button>
             <div class="image-upload-wrap mockup">
               <input id="mockup-input" class="file-upload-input mockup" onchange="loadMockup(event)" type='file' accept="image/*" required/>
               <div class="drag-text">
@@ -39,45 +53,11 @@
             </div>
           </div>
         </div>
-        <!-- ADD screenshot -->
-        <div class="col-6 text-center">
-          <div class="file-upload screenshot">
-            <button id="screenshot-upload" class="file-upload-btn btn btn-lg screenshot" type="button" onclick="$('.file-upload-input.screenshot').trigger( 'click' )">
-              <span><i class="fa-solid fa-upload"></i></span> Screenshot
-            </button>
-            <div class="image-upload-wrap screenshot">
-              <input id="screenshot-input" class="file-upload-input screenshot" onchange="loadScreenshot(event)" type='file' accept="image/*" required/>
-              <div class="drag-text">
-                <img id="screenshot">  
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="row">
         <div class="col-12">
-          <!-- HUE -->
-          <div class="btn-group">
-            <button id="hue-dropdown" title="Screenshot Transparency" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Hue
-            </button>
-            <div class="dropdown-menu" id="hue-dropdown-menu">
-              <a class="dropdown-item" href="#">None</a>
-              <a class="dropdown-item" href="#">Yellow</a>
-              <a class="dropdown-item" href="#">Blue</a>
-              <a class="dropdown-item" href="#">Red</a>
-            </div>
-          </div>
-          <!-- ALPHA -->
-          <div class="btn-group">
-            <button id="alpha-dropdown" title="Screenshot Transparency" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Alpha
-            </button>
-            <div class="dropdown-menu" id="alpha-dropdown-menu">
-              <a class="dropdown-item" href="#">Transparent</a>
-              <a class="dropdown-item" href="#">Translucent</a>
-              <a class="dropdown-item" href="#">Opaque</a>
-            </div>
+          <div class="slideContainer">
+            <input type="range" min="0" max="100" value="50" class="slider" id="slider">
           </div>
         </div>
       </div>
