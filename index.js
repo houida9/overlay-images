@@ -73,6 +73,10 @@ function setResolutionListener() {
 
         document.getElementById('overlay').disabled = false
         $('.overlay-wrapper').tooltip('dispose')
+
+        if(overlayed) {
+           document.getElementById('overlay').click()
+        }
       });
 }
 
@@ -122,7 +126,8 @@ function downloadOverlay() {
     if(overlayed) {
       const date = new Date();
       const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      var month = months[date.getMonth()]
+
+      var month = months[date.getMonth()];
       const [day, year, hours, minutes, seconds] = [date.getDate(), date.getFullYear(), date.getHours(), date.getMinutes(), date.getSeconds()]
       const timestamp = `${year}${month}${day}_${hours}${minutes}${seconds}`;
 
