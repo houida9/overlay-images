@@ -2,8 +2,26 @@
 var mockupAlpha = 0.5;
 var overlayed = false;
 
+let canvasResolutionMap = {
+    "1280 x 800": {
+        "width": 1280,
+        "height": 800,
+        "scaleBy": .75
+    },
+    "1920 x 1080": {
+        "width": 1920,
+        "height": 1080,
+        "scaleBy": .60
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function(event) {
-  setSelectedAlphaListener();
+  setAlphaListener();
+  setResolutionListener();
+
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 })
 
 var loadMockup = function(event) {
@@ -28,12 +46,14 @@ var loadScreenshot = function(event) {
   }
 };
 
-function setSelectedAlphaListener() {
+function setAlphaListener() {
 
   var slider = document.getElementById("slider");
+  // Set the default alpha
+  slider.value = mockupAlpha * 100.0
 
   slider.oninput = function() {
-      screenshotAlpha = slider.value/100.0
+      mockupAlpha = slider.value/100.0
 
       if (overlayed) {
         document.getElementById('overlay').click()
@@ -41,6 +61,34 @@ function setSelectedAlphaListener() {
   }
 }
 
+function setResolutionListener() {
+      $('#resolution-dropdown-menu a').on('click', function(e){
+        e.preventDefault();
+
+        $('#resolution-dropdown-menu .dropdown-item').css('background-color', 'white')
+
+        updateCanvasSize($(this).text())
+
+        $(this).css('background-color', '#50C878')
+
+        document.getElementById('overlay').disabled = false
+        $('.overlay-wrapper').tooltip('dispose')
+      });
+}
+
+function updateCanvasSize(resolutionOption) {
+    var canvas = document.getElementById('canvas')
+
+    var resolutionObject = canvasResolutionMap[resolutionOption]
+
+    canvas.width = parseInt(
+        resolutionObject.width * resolutionObject.scaleBy
+    );
+
+    canvas.height = parseInt(
+        resolutionObject.height * resolutionObject.scaleBy
+    );
+}
 
 
 function overlay() {
@@ -58,7 +106,7 @@ function overlay() {
     context.drawImage(screenshotImage, 0, 0, canvas.width, canvas.height);
     context.restore();
     context.save();
-    context.globalAlpha = screenshotAlpha;
+    context.globalAlpha = mockupAlpha;
     context.drawImage(mockupImage, 0, 0, canvas.width, canvas.height);
     context.restore();
 
@@ -74,8 +122,8 @@ function downloadOverlay() {
     if(overlayed) {
       const date = new Date();
       const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      var monthString = months[date.getMonth()]
-      const [month, day, year, hours, minutes, seconds] = [monthString, date.getDate(), date.getFullYear(), date.getHours(), date.getMinutes(), date.getSeconds()]
+      var month = months[date.getMonth()]
+      const [day, year, hours, minutes, seconds] = [date.getDate(), date.getFullYear(), date.getHours(), date.getMinutes(), date.getSeconds()]
       const timestamp = `${year}${month}${day}_${hours}${minutes}${seconds}`;
 
       let downloadLink = document.createElement('a');
@@ -87,3 +135,4 @@ function downloadOverlay() {
       downloadLink.click();
     }
 }
+

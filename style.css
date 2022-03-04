@@ -12,6 +12,11 @@ body {
   margin: 1px;
 }
 
+#resolution-dropdown {
+    margin-left: 20px;
+    letter-spacing: 1px;
+}
+
 #canvas {
   text-align: center;
   margin-bottom: 20px;
@@ -23,11 +28,13 @@ body {
   visibility: hidden;
 }
 
-.btn-overlay {
-  margin-left: 150px;
-  background-color: rgb(104, 7, 104);
+.overlay-wrapper {
   margin-top: 40px;
   margin-bottom: 50px;
+}
+
+.btn-overlay {
+  background-color: rgb(104, 7, 104);
   width: 300px;
   font-size: 20px;
   color: white;
@@ -35,7 +42,6 @@ body {
   letter-spacing: 1px;
   border: solid 2px rgb(216, 212, 212);
   border-radius: 10px;
-  float: left;
   padding: 10px !important;
 }
 
@@ -45,13 +51,17 @@ body {
   cursor: pointer;
 }
 
-.slideContainer {
-  float: right;
-  margin-right: 90px;
-  width: 20%;
+#sliderTitle {
+  color: white;
+  letter-spacing: 1px;
 }
 
-/* Mouse-over effects */
+.slideContainer {
+  float: right;
+  width: 230px;
+  margin-right: 12%;
+}
+
 .slider:hover {
   opacity: 1;
 }
@@ -59,11 +69,11 @@ body {
 .slider {
   -webkit-appearance: none;
   width: 100%;
-  height: 15px;
+  height: 8px;
   border-radius: 5px;
   background: #c0c0c0;
   outline: none;
-  opacity: 0.7;
+  opacity: 0.85;
   -webkit-transition: .2s;
   transition: opacity .2s;
 }
@@ -71,16 +81,16 @@ body {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   background: red;
   cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-  width: 15px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   background: #04AA6D;
   cursor: pointer;
@@ -89,43 +99,18 @@ body {
 .btn-group {
   margin-top: 10px;
   box-shadow: none;
-  float: right;
+  float: left;
+  margin-left: 15%;
 }
 
 .btn-group:hover {
   box-shadow: none;
 }
 
-#alpha-dropdown-menu {
-  min-width: 108px;
-  max-width: 108px;
-}
-
-#hue-dropdown-menu {
-  min-width: 90px;
-  max-width: 90px;
-}
-
-#alpha-dropdown {
-  letter-spacing: 1px;
-  margin-left: 35px;
-  margin-right: 10px;
-}
-
-#hue-dropdown {
-  letter-spacing: 1px;
-  margin-left: 10px;
-  margin-right: 90px;
-}
-
-#alpha-dropdown-menu, 
-  #hue-dropdown-menu {
-    margin-top: 2px;
-}
-
 .dropdown-menu {
-  min-width: 115px;
-  max-width: 1px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-top: 3px;
 }
 
 .screenshot-upload, .mockup-upload {

@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="en">
   <head>
-    
+
+    <title>Overlay Tool</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="Content-Security-Policy" 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy"
     content="
       worker-src blob:; 
       child-src blob: gap:;
@@ -55,32 +56,44 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12">
+        <div class="col-6 text-center">
+          <div class="btn-group">
+            <button id="resolution-dropdown" title="ITU Resolution" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+              Resolution
+            </button>
+            <div id="resolution-dropdown-menu" class="dropdown-menu">
+              <a class="dropdown-item" href="#">1280 x 800</a>
+              <a class="dropdown-item" href="#">1920 x 1080</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 text-center">
           <div class="slideContainer">
+            <span id="sliderTitle">Alpha</span>
             <input type="range" min="0" max="100" value="50" class="slider" id="slider">
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-3">
-        </div>
         <!-- Overlay button -->
-        <div class="col-3 center-block text-center center-block">
-          <button class="btn btn-overlay btn-lg" type="button" id="overlay" onclick="overlay()">
-            <span><i class="fa-solid fa-images"></i></span> OVERLAY
-          </button>
+        <div class="col-12 center-block text-center center-block">
+          <span class="d-inline-block overlay-wrapper" tabindex="0" data-toggle="tooltip" title="Choose an ITU resolution">
+            <button class="btn btn-overlay btn-lg" type="button" id="overlay" onclick="overlay()" disabled>
+              <span><i class="fa-solid fa-images"></i></span> Overlay
+            </button>
+          </span>
         </div>
       </div>
       <!-- Canvas -->
       <div class="row">
+        <!-- Download -->
+        <div class="row">
+          <div class="col-12 text-center">
+            <button class="btn btn-info btn-md" type="button" id="download" onclick="downloadOverlay()">Download</button>
+          </div>
+        </div>
         <div class="col-12 text-center">
           <canvas id="canvas" width=960 height=600></canvas>
-        </div>
-      </div>
-      <!-- Download -->
-      <div class="row">
-        <div class="col-12 text-center">
-          <button class="btn btn-info btn-md" type="button" id="download" onclick="downloadOverlay()">Download</canvas>
         </div>
       </div>
     </div>
